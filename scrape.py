@@ -32,3 +32,16 @@ def extract_links(alphabet, base_url):
                 recipe_links.append(link)
     
     return recipe_links
+
+def extract_recipe_details(url):
+    all_recipes = {}
+
+    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    title = soup.select_one("h1")
+    ingredients = {a.text.strip() for a in soup.select('a[data_testid="ingredient-derived-link"]')}
+
+    if title and ingredients:
+        return title.text.strip(), sorted(ingredients)
+    return None, None
+
+    
