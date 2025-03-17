@@ -8,7 +8,7 @@ def get_max_pages(alphabet, base_url):
         url = base_url.format(alphabet=alphabet, page=page)
         response = requests.get(url)
         if response.status_code != 200:
-            return page - 1 
+            return min(page - 1, 15) # take only up to 15 pages 
         page += 1
 
 def extract_links(alphabet, base_url):
