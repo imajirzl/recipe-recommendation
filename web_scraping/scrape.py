@@ -57,7 +57,10 @@ def extract_recipe_details(url):
     ingredients = {a.text.strip() for a in soup.select('a[data-testid="ingredient-derived-link"]')}
 
     if ingredients:
-        all_recipes[title_text] = sorted(ingredients)
+        all_recipes[title_text] = {
+            "ingredients": sorted(ingredients),
+            "link": url  
+        }
     
     return all_recipes
 
