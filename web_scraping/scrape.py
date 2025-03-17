@@ -47,7 +47,12 @@ def extract_recipe_details(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     title = soup.select_one("h1")
-    title_text = title.text.strip()
+
+    if title:
+        title_text = title.text.strip()
+    else: 
+        print(f"Warning: Title not found for {url}")
+        return {}  # Return empty dict to skip this entry
 
     ingredients = {a.text.strip() for a in soup.select('a[data-testid="ingredient-derived-link"]')}
 
