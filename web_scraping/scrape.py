@@ -22,9 +22,11 @@ def extract_links(alphabet, base_url):
                 link = "https://www.bbc.co.uk" + a_tag["href"]
                 recipe_links.append(link)
 
-        next_button = soup.find("span", class_="pagination__link--disabled")
-        if next_button:
-            break
+        pagination_div = soup.find("div", class_="pagination gel-wrap")
+        if pagination_div:
+            next_button_disabled = pagination_div.find("span", class_="pagination__link--disabled")
+            if next_button_disabled:
+                break
 
         page += 1
                 
