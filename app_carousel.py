@@ -26,9 +26,8 @@ if user_input:
         # Display recipe in a bordered container
         st.markdown(
             f"""
-            <div style="border: 2px solid #ccc; padding: 15px; border-radius: 10px; background-color: #f9f9f9;">
-                <h3><a href="{current_recipe['link']}" target="_blank">{current_recipe['title']}</a></h3>
-                <h4>Ingredients:</h4>
+            <div style="border: 2px solid #ccc; padding: 15px; border-radius: 10px;">
+                <h4><a href="{current_recipe['link']}" target="_blank">{current_recipe['title']}</a></h4>
                 <ul>
                     {''.join(f'<li>{ingredient}</li>' for ingredient in current_recipe['ingredients'])}
                 </ul>
