@@ -23,20 +23,10 @@ if user_input:
         current_idx = st.session_state.current_recipe_idx
         current_recipe = matching[current_idx]
 
-        # Display recipe in a bordered container
-        st.markdown(
-            f"""
-            <div style="border: 2px solid #ccc; padding: 15px; border-radius: 10px;">
-                <h4><a href="{current_recipe['link']}" target="_blank">{current_recipe['title']}</a></h4>
-                <ul>
-                    {''.join(f'<li>{ingredient}</li>' for ingredient in current_recipe['ingredients'])}
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        # Show current recipe index
+        st.write(f"Recipe {current_idx + 1} of {len(matching)}")
 
-        # Navigation buttons
+        # Navigation buttons ABOVE the recipe box
         col1, col2, col3 = st.columns([1, 2, 1])
 
         with col1:
@@ -47,8 +37,29 @@ if user_input:
             if st.button("Next ➡") and st.session_state.current_recipe_idx < len(matching) - 1:
                 st.session_state.current_recipe_idx += 1
 
-        # Show current recipe index
-        st.write(f"Recipe {current_idx + 1} of {len(matching)}")
+        # Recipe box
+        st.markdown(
+            f"""
+            <div style="margin-bottom: 15px;">
+                <h4><a href="{current_recipe['link']}" target="_blank">{current_recipe['title']}</a></h4>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Ingredients in two columns
+        ingredients_list = list(current_recipe["ingredients"])
+        col1, col2 = st.columns(2)
+
+        half = len(ingredients_list) // 2
+        with col1:
+            for ingredient in ingredients_list[:half]:
+                st.write(f"- {ingredient}")
+
+        with col2:
+            for ingredient in ingredients_list[half:]:
+                st.write(f"- {ingredient}")
+
 
     else:
         st.warning("❌ No recipes found with those ingredients.")
