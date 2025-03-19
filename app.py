@@ -15,7 +15,8 @@ if user_input:
         st.subheader("✅ Recipes Found:")
         for recipe in matching:
             st.markdown(f"**[{recipe['title']}]({recipe['link']})**")
-            st.write(", ".join(recipe["ingredients"]))  # Show ingredients
+            #st.write(", ".join(recipe["ingredients"]))  # Show ingredients
+            st.markdown("\n".join([f"- {ingredient}" for ingredient in recipe["ingredients"]]))
             st.write("---")  # Add a separator
     else:
         st.warning("❌ No recipes found with those ingredients.")
