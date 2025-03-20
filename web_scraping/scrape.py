@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from string import ascii_lowercase
 
 def extract_links(alphabet, base_url):
     recipe_links = []
