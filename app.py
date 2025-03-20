@@ -7,7 +7,7 @@ from recipe_module.recommend_recipe import load_recipes, search_recipes
 filename = "bbc_recipes_ingredients.txt"
 recipes = load_recipes(filename)
 
-# define user_input field for ingredients. ex input: 'chicken,butter,mozzarella'
+# define user_input field for ingredients. ex input: 'chicken,mozzarella'
 user_input = st.text_input("Enter ingredients (comma-separated):", "")
 
 # if there is user input
