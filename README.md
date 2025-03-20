@@ -11,7 +11,6 @@ Make sure you have the following installed before running the app:
 ### Modules
 #### Web Scraping
 **Purpose**: Scrapes recipes from the BBC Food website.
-**Functions**:
   1. ```extract_links()```: Extracts recipe links for all alphabets (A-Z) and all pages per alphabet.
   - Input: alphabet, base_url
   - ```base_url = "https://www.bbc.co.uk/food/recipes/a-z/{alphabet}/{page}#featured-content"```
@@ -26,7 +25,6 @@ Make sure you have the following installed before running the app:
  
 #### Recipe Matching
 **Purpose**: Matches user-inputted ingredients with saved recipes.
-**Functions**:
    1. ```load_recipes()```: Loads and parses recipes from the saved text file of the recipe links.
    - Input: Filepath.
    - Output: List of dictionaries containing:
@@ -65,5 +63,5 @@ There are two different versions of the developed interface:
    ```http://localhost:8502/``` (if running both apps simultaneously).
 4. Enter ingredients as input and press Enter. Make sure that it is comma separated.
 
-   Example: "chicken,butter,mozzarella"
+   Example: _"chicken,butter,mozzarella"_
 
