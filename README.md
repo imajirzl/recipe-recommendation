@@ -1,7 +1,12 @@
-# recipe-recommendation
-Project description:
+# BBC Recipe Scraper & Recipe Recommendation
+
+### Project description
 This project scrapes all recipes from https://www.bbc.co.uk/food/recipes, and extracts the ingredients. Then it creates a model that allows the user to input the ingredients they want to use, and returns the links to all recipes that include those ingredients.
 
-Code structure:
+### 📦 Dependencies
+Make sure you have the following installed before running the app:
+```pip install requests beautifulsoup4 streamlit```
 
-App explanation: 
+### 📁 Repository Structure
+
+### 🚀 How to Run the App
