@@ -58,9 +58,12 @@ There are two different versions of the developed interface:
    For app.py (all results in one page): ```streamlit run app.py```
 
    For app_carousel.py (one recipe at a time with navigation): ```streamlit run app_carousel.py```
-4. Follow the terminal instructions. The app will launch in your browser at:
+3. Follow the terminal instructions. The app will launch in your browser at:
 
    ```http://localhost:8501/``` (for app.py)
 
    ```http://localhost:8502/``` (if running both apps simultaneously).
+4. Enter ingredients as input and press Enter. Make sure that it is comma separated.
+
+   Example: "chicken,butter,mozzarella"
 
