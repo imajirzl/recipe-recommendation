@@ -63,5 +63,5 @@ There are two different versions of the developed interface:
    ```http://localhost:8502/``` (if running both apps simultaneously).
 4. Enter ingredients as input and press Enter. Make sure that it is comma separated.
 
-   Example: _"chicken,butter,mozzarella"_
+   Example: _"chicken,mozzarella"_
 
