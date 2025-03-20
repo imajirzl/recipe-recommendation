@@ -9,4 +9,13 @@ Make sure you have the following installed before running the app:
 
 ### 📁 Repository Structure
 
+
 ### 🚀 How to Run the App
+1. Open a terminal in the project folder, where app.py and app_carousel.py is located in.
+2. Run one of the following commands:
+   For app.py (all results in one page): ```streamlit run app.py```
+   For app_carousel.py (one recipe at a time with navigation): ```streamlit run app_carousel.py```
+3. Follow the terminal instructions. The app will launch in your browser at:
+   ```http://localhost:8501/``` (for app.py)
+   ```http://localhost:8502/``` (if running both apps simultaneously).
+
