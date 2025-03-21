@@ -50,7 +50,7 @@ There are two different versions of the developed interface:
 
 
 ## 🚀 How to Run the App
-1. Open a terminal in the project folder, where ```app.py``` and ```app_carousel.py``` is located in.
+1. Open a terminal in the project folder, where ```app.py```,  ```app_carousel.py``` and the recipe module are located in.
 2. Run one of the following commands:
 
    For app.py (all results in one page): ```streamlit run app.py```
