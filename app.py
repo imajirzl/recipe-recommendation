@@ -2,7 +2,11 @@ import streamlit as st
 from recipe_module.recommend_recipe import load_recipes, search_recipes
 
 """Streamlit app showing recipe recommendations as one whole page"""
-# ADD definition
+
+from datetime import datetime
+print(datetime.now().strftime("%I:%M:%S %p"))
+print(f"Now is:{datetime.now().strftime("%I:%M:%S %p")}")
+
 # load recipes from bbc_recipes_ingredients.txt
 filename = "bbc_recipes_ingredients.txt"
 recipes = load_recipes(filename)
