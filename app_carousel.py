@@ -7,15 +7,20 @@ from recipe_module.recommend_recipe import load_recipes, search_recipes
 filename = "bbc_recipes_ingredients.txt"
 recipes = load_recipes(filename)
 
+# extract unique ingredients from recipes
+all_ingredients = sorted(
+    {ingredient for recipe in recipes for ingredient in recipe["ingredients"]}
+)
+
 # define user_input field for ingredients. ex input: 'chicken,mozzarella'
-user_input = st.text_input("Enter ingredients (comma-separated):", "")
+user_input = st.multiselect(
+    "Select ingredients:", options=all_ingredients, help="Start typing your ingredients"
+)
 
 # if there is user input
 if user_input:
-    # turn input of ingredients into list: split by commas and remove extra spaces
-    ingredients = [ingredient.strip() for ingredient in user_input.split(",")]
     # find matching recipes based on input ingredients
-    matching = search_recipes(recipes, ingredients)
+    matching = search_recipes(recipes, user_input)
 
     # if a match exists
     if matching:
@@ -78,7 +83,7 @@ if user_input:
         for recipe in recipes:
             # find the matched ingredients 
             recipe_ingredients = recipe.get("ingredients", [])
-            matched_ingredients = [ingredient for ingredient in ingredients if ingredient in recipe_ingredients]
+            matched_ingredients = [ingredient for ingredient in user_input if ingredient in recipe_ingredients]
 
             if matched_ingredients:
                 partial_matches.append({
