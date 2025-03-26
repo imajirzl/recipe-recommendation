@@ -61,7 +61,5 @@ There are two different versions of the developed interface:
    ```http://localhost:8501/``` (for app.py)
 
    ```http://localhost:8502/``` (if running both apps simultaneously).
-4. Enter ingredients as input and press Enter. Make sure that it is comma separated.
-
-   Example: _"chicken,mozzarella"_
+4. Enter ingredients as input from the dropdown. Users can type in an ingredient and press enter to continue with the next ingredient if the user intends to have multiple inputs.
 
