@@ -7,7 +7,7 @@ from recipe_module.recommend_recipe import load_recipes, search_recipes
 filename = "bbc_recipes_ingredients.txt"
 recipes = load_recipes(filename)
 
-# Extract unique ingredients from recipes
+# extract unique ingredients from recipes
 all_ingredients = sorted(
     {ingredient for recipe in recipes for ingredient in recipe["ingredients"]}
 )
@@ -26,8 +26,8 @@ if user_input:
     if matching:
         st.subheader("✅ Recipes Found:")
         for recipe in matching:
-            st.markdown(f"**[{recipe['title']}]({recipe['link']})**")  # Show title with hyperlink
-            st.markdown("\n".join([f"- {ingredient}" for ingredient in recipe["ingredients"]]))  # Show ingredients as bullets
+            st.markdown(f"**[{recipe['title']}]({recipe['link']})**")  # show title with hyperlink
+            st.markdown("\n".join([f"- {ingredient}" for ingredient in recipe["ingredients"]]))  # show ingredients as bullets
             st.write("---")  # Separator
     else:
         st.warning("❌ No recipes found with those ingredients.")
