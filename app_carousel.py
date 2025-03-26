@@ -32,7 +32,12 @@ if user_input:
 
         # get current recipe to display
         current_idx = st.session_state.current_recipe_idx
-        current_recipe = matching[current_idx]
+        # Ensure the index is within range
+        if matching and 0 <= current_idx < len(matching):
+            current_recipe = matching[current_idx]
+        else:
+            st.warning("No matching recipes found.")
+        
 
         # show current recipe index out of total number of matching recipes
         st.write(f"Recipe {current_idx + 1} of {len(matching)}")
