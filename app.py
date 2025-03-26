@@ -38,7 +38,7 @@ if user_input:
         for recipe in recipes:
             # find the matched ingredients 
             recipe_ingredients = recipe.get("ingredients", [])
-            matched_ingredients = [ingredient for ingredient in ingredients if ingredient in recipe_ingredients]
+            matched_ingredients = [ingredient for ingredient in all_ingredients if ingredient in recipe_ingredients]
 
             if matched_ingredients:
                 partial_matches.append({
