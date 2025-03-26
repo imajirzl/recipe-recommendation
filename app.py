@@ -1,7 +1,7 @@
 import streamlit as st
 from recipe_module.recommend_recipe import load_recipes, search_recipes
 
-"""Streamlit app showing recipe recommendations as one whole page"""
+# Streamlit app showing recipe recommendations as one whole page
 
 # load recipes from bbc_recipes_ingredients.txt
 filename = "bbc_recipes_ingredients.txt"
@@ -25,9 +25,40 @@ if user_input:
     # if a match exists
     if matching:
         st.subheader("✅ Recipes Found:")
+        
         for recipe in matching:
             st.markdown(f"**[{recipe['title']}]({recipe['link']})**")  # show title with hyperlink
             st.markdown("\n".join([f"- {ingredient}" for ingredient in recipe["ingredients"]]))  # show ingredients as bullets
             st.write("---")  # Separator
+
     else:
-        st.warning("❌ No recipes found with those ingredients.")
+        # if no full matches are found, try partial matches
+        partial_matches = []
+
+        for recipe in recipes:
+            # find the matched ingredients 
+            recipe_ingredients = recipe.get("ingredients", [])
+            matched_ingredients = [ingredient for ingredient in ingredients if ingredient in recipe_ingredients]
+
+            if matched_ingredients:
+                partial_matches.append({
+                    'title': recipe['title'],
+                    'link': recipe['link'],
+                    'matched_ingredients': matched_ingredients,
+                    'ingredients': recipe_ingredients,  
+                    'matched_count': len(matched_ingredients)  
+                })
+
+        if partial_matches:
+            # sort partial matches by the number of matched ingredients (descending order)
+            partial_matches.sort(key=lambda x: x['matched_count'], reverse=True)
+
+            st.warning("❌ No full matches found, but we found partial matches with the following ingredients:")
+            for recipe in partial_matches:
+                st.markdown(f"**[{recipe['title']}]({recipe['link']})**")
+                st.markdown(f"Matched ingredients: {', '.join(recipe['matched_ingredients'])}")
+                st.markdown("\n".join([f"- {ingredient}" for ingredient in recipe['ingredients']]))
+                st.write("---")
+        
+        else:
+            st.warning("❌ No recipes found with those ingredients.")
