@@ -18,8 +18,10 @@ def extract_links(alphabet, base_url):
         
         if response.status_code != 200:
             break # stop if the page does not exist
+
+        html_content = response.content.decode("utf-8", errors="replace")
     
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(html_content, "html.parser")
 
         # extract recipe links
         for div in soup.find_all("div", class_="gel-layout__item"):
@@ -59,20 +61,22 @@ def extract_recipe_details(url):
     all_recipes = {}
 
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
+
+    html_content = response.content.decode("utf-8", errors="replace")
+    soup = BeautifulSoup(html_content, "html.parser")
     # extracting title
     title = soup.select_one("h1")
 
     # if title exists, extract 'text'.
     if title:
-        title_text = title.text.strip()
+        title_text = title.get_text(strip=True)  # Properly extracts and decodes text
     else: # if title does not exist, print the following warning
         print(f"Warning: Title not found for {url}")
         return {}  # return empty dict to skip this entry
 
     # extract ingredients
-    ingredients = {a.text.strip() for a in soup.select('a[data-testid="ingredient-derived-link"]')}
-
+    ingredients = {a.get_text(strip=True) for a in soup.select('a[data-testid="ingredient-derived-link"]')}
+    
     # if ingredients exist, append to dictionary the following:
     if ingredients:
         all_recipes[title_text] = {
@@ -81,5 +85,7 @@ def extract_recipe_details(url):
         }
     
     return all_recipes
+
+    
 
     
